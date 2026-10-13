@@ -117,6 +117,17 @@ td.s{color:var(--blue);font-weight:800}
 .eu tr.vox .eubar{background:var(--red)}
 .facts{container-type:inline-size;width:100%}
 .fact .n{white-space:nowrap}
+.jobs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:24px;align-items:start;border-top:4px solid var(--ink);padding-top:18px}
+.jobs-big .n{font-weight:900;font-size:clamp(44px,11vw,84px);line-height:1;letter-spacing:-.04em;color:var(--red);font-variant-numeric:tabular-nums}
+.jobs-big .l{font-weight:800;font-size:17px;margin-top:6px}
+.jobs-big .d{font-size:13px;color:var(--muted);margin-top:4px}
+.jobs-list{display:flex;flex-direction:column;gap:10px;min-width:0}
+.jrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;font-size:14px}
+.jrow b{font-weight:800;font-variant-numeric:tabular-nums;text-align:right}
+.jrow .jb{grid-column:1/-1;height:8px;background:var(--soft);border-radius:4px;overflow:hidden}
+.jrow .jb i{display:block;height:100%;background:var(--red)}
+.jempty{font-size:14px;color:var(--muted)}
+@media (max-width:560px){.jobs{grid-template-columns:1fr}}
 .method{font-size:14px;color:var(--muted)}
 .method h3{font-weight:900;text-transform:uppercase;font-size:18px;color:var(--ink);margin:0 0 8px}
 .method ul{padding-left:18px;margin:0 0 18px;display:flex;flex-direction:column;gap:6px}
@@ -184,6 +195,16 @@ footer .logo{height:52px}
     <p class="note">Estimaciones con el coste medio de cada servicio: un hospital público con sus especialistas (162 M€ al año), un centro de salud o consultorio (1,13 M€ al año) y un colegio o instituto público (2,17 M€ al año).</p>
 
     <div class="items" id="items"></div>
+  </section>
+
+  <section aria-labelledby="h-empleo">
+    <h2 id="h-empleo">¿Cuántos empleos se pierden?</h2>
+    <p class="sub">Empleos públicos que desaparecerían con el reparto que has hecho arriba: médicos, enfermeras, docentes, cuidadoras, conductores…</p>
+    <div class="jobs">
+      <div class="jobs-big"><div class="n" id="jTotal">0</div><div class="l">empleos públicos perdidos</div><div class="d" id="jPct">–</div></div>
+      <div class="jobs-list" id="jList"></div>
+    </div>
+    <p class="note">Estimación: la parte de cada recorte que se dedica a salarios (según la IGAE) dividida entre el coste medio de un empleo público, 48.104 € al año con cotizaciones. No incluye los empleos de empresas contratistas ni de centros concertados, ni los que se pierden por el menor consumo de los hogares, así que la cifra real sería mayor.</p>
   </section>
 
   <section aria-labelledby="h-bolsillo">
@@ -260,6 +281,7 @@ footer .logo{height:52px}
       <li><b>Hospitales:</b> 387 hospitales públicos (Catálogo Nacional de Hospitales 2025). Personas de referencia: 49,8 millones de habitantes entre 387 hospitales.</li>
       <li><b>Centros de salud:</b> 3.067 centros de salud y 9.957 consultorios locales, con 48 millones de personas asignadas (SIAP).</li>
       <li><b>Colegios:</b> 19.376 centros públicos no universitarios y 5,5 millones de alumnos (curso 2025-2026). Coste medio: gasto en infantil, primaria y secundaria sin los conciertos (41.997 M€) entre esos centros.</li>
+      <li><b>Empleos:</b> peso de los salarios en el gasto de cada partida (IGAE 2024: 54 % en hospitales y centros de salud, 66 % en educación, 30 % en cultura, 19 % en transporte y servicios sociales) y coste medio por empleo público de 48.104 € (172.749 M€ en salarios entre 3,59 millones de asalariados públicos, EPA).</li>
       <li><b>Pensiones:</b> 9,22 millones de pensionistas y 10,19 millones de pensiones; pensión media de 1.255,43 € en 14 pagas.</li>
       <li><b>IRPF hoy (2026):</b> escala general estatal y autonómica (19 % a 47 %), cotizaciones del 6,5 %, 2.000 € de gastos, reducción por rendimientos del trabajo, mínimo personal y por hijos y deducción para el salario mínimo (17.094 € al año).</li>
       <li><b>IRPF con Vox:</b> 15 % hasta 70.000 € y 25 % por encima, mínimo exento de 22.000 €, 4 puntos menos por hijo y sin reducción por rendimientos del trabajo. Mismo método que sueldovox.es; coincide con los ejemplos de Hacienda.</li>
@@ -338,23 +360,24 @@ footer .logo{height:52px}
 
   // Partidas (millones de €, IGAE 2024)
   const P=[
-    {k:'san',n:'Hospitales y especialistas',s:'Hospitales públicos y consultas de especialistas',g:62760,
+    {k:'san',pe:0.539,n:'Hospitales y especialistas',s:'Hospitales públicos y consultas de especialistas',g:62760,
       eq:c=>{const h=c/(HOSP_GASTO/HOSP);return h>=HOSP?'Más que el coste de <b>todos los hospitales públicos</b> de España.':'Equivale a cerrar <b>'+fmt(h)+' hospitales públicos</b>, que atienden a '+big(h*POB_HOSP)+' personas.';}},
-    {k:'cap',n:'Centros de salud',s:'Atención primaria: centros de salud y consultorios',g:14716,
+    {k:'cap',pe:0.539,n:'Centros de salud',s:'Atención primaria: centros de salud y consultorios',g:14716,
       eq:c=>{const k=c/(CAP_GASTO/CAP);return k>=CAP?'Más que el coste de <b>toda la atención primaria</b>.':'Equivale a cerrar <b>'+fmt(k)+' centros de salud y consultorios</b>, donde están asignadas '+big(k*POB_CAP)+' personas.';}},
-    {k:'med',n:'Medicamentos y otros gastos sanitarios',s:'Farmacia con receta, salud pública, vacunas e investigación',g:25466},
-    {k:'edu',n:'Educación',s:'Colegios, institutos, universidades y becas',g:65862,
+    {k:'med',pe:0.12,n:'Medicamentos y otros gastos sanitarios',s:'Farmacia con receta, salud pública, vacunas e investigación',g:25466},
+    {k:'edu',pe:0.663,n:'Educación',s:'Colegios, institutos, universidades y becas',g:65862,
       eq:c=>{const k=c/(COLE_GASTO/COLE);return k>=COLE?'Más que el coste de <b>todos los colegios e institutos públicos</b>.':'Equivale a cerrar <b>'+fmt(k)+' colegios e institutos</b> con '+big(k*ALUM_COLE)+' alumnos.';}},
-    {k:'pen',n:'Pensiones',s:'Jubilación, viudedad, incapacidad y clases pasivas',g:206130,
+    {k:'pen',pe:0,n:'Pensiones',s:'Jubilación, viudedad, incapacidad y clases pasivas',g:206130,
       eq:c=>'<b>'+eur(c*1e6/PENSIONES/14)+' menos</b> por pensión en cada una de las 14 pagas.'},
-    {k:'des',n:'Desempleo',s:'Prestaciones y subsidios por paro',g:24077},
-    {k:'dep',n:'Dependencia, bajas y cuidados',s:'Dependencia, incapacidad temporal y otros cuidados',g:38369},
-    {k:'fam',n:'Familia e infancia',s:'Permisos, prestaciones por hijo y ayudas',g:15294},
-    {k:'exc',n:'Exclusión social',s:'Ingreso mínimo vital y servicios sociales',g:10878},
-    {k:'viv',n:'Vivienda y servicios urbanos',s:'Vivienda, agua, alumbrado y urbanismo',g:8270},
-    {k:'tra',n:'Transporte público',s:'Cercanías, autobuses, carreteras y ferrocarril',g:28634},
-    {k:'cul',n:'Cultura y deporte',s:'Bibliotecas, museos, polideportivos y medios públicos',g:17718}
+    {k:'des',pe:0,n:'Desempleo',s:'Prestaciones y subsidios por paro',g:24077},
+    {k:'dep',pe:0.185,n:'Dependencia, bajas y cuidados',s:'Dependencia, incapacidad temporal y otros cuidados',g:38369},
+    {k:'fam',pe:0,n:'Familia e infancia',s:'Permisos, prestaciones por hijo y ayudas',g:15294},
+    {k:'exc',pe:0.185,n:'Exclusión social',s:'Ingreso mínimo vital y servicios sociales',g:10878},
+    {k:'viv',pe:0.173,n:'Vivienda y servicios urbanos',s:'Vivienda, agua, alumbrado y urbanismo',g:8270},
+    {k:'tra',pe:0.185,n:'Transporte público',s:'Cercanías, autobuses, carreteras y ferrocarril',g:28634},
+    {k:'cul',pe:0.296,n:'Cultura y deporte',s:'Bibliotecas, museos, polideportivos y medios públicos',g:17718}
   ];
+  const COSTE_EMPLEO=48104, EMPLEO_PUB=3591200;
   const STEP=500, state={}, box=$('items');
   P.forEach(p=>{
     const el=document.createElement('div');el.className='item';
@@ -390,6 +413,12 @@ footer .logo{height:52px}
     // Contador
     $('total').innerHTML=fmt(t)+' <small>de 85.000 M€</small>';
     $('tbar').style.width=Math.min(100,t/COSTE*100)+'%';
+    // Empleos
+    const jobs=P.filter(p=>p.pe>0&&state[p.k]>0).map(p=>({n:p.n,j:state[p.k]*1e6*p.pe/COSTE_EMPLEO})).sort((a,b)=>b.j-a.j);
+    const jt=jobs.reduce((a,x)=>a+x.j,0), jmax=jobs.length?jobs[0].j:1;
+    $('jTotal').textContent=fmt(Math.round(jt/100)*100);
+    $('jPct').textContent=jt?'el '+(jt/EMPLEO_PUB*100).toLocaleString('es-ES',{maximumFractionDigits:1})+' % de los 3,6 millones de empleos públicos':'Mueve los deslizadores de servicios para verlo';
+    $('jList').innerHTML=jobs.length?jobs.map(x=>'<div class="jrow"><span>'+x.n+'</span><b>'+fmt(Math.round(x.j/100)*100)+'</b><div class="jb"><i style="width:'+(x.j/jmax*100).toFixed(1)+'%"></i></div></div>').join(''):'<p class="jempty">Los recortes en pensiones, desempleo y ayudas a familias quitan dinero a los hogares, pero no eliminan empleo público directo.</p>';
     const m=$('tmsg');
     if(Math.abs(t-COSTE)<STEP/2){m.className='msg ok';m.textContent='Cubierto. Este es el precio de la rebaja.';}
     else if(t<COSTE){m.className='msg short';m.textContent='Faltan '+fmt(COSTE-t)+' M€';}
