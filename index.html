@@ -174,12 +174,14 @@ footer .logo{height:52px}
     <div class="impact" aria-live="polite">
       <div class="imp"><div class="n" id="iHosp">0</div><div class="l">hospitales públicos cerrados</div><div class="d" id="iHospD">de 387 que hay en España</div></div>
       <div class="imp"><div class="n" id="iHospP">0</div><div class="l">personas sin su hospital de referencia</div><div class="d">unas 128.700 por hospital</div></div>
+      <div class="imp"><div class="n" id="iCap">0</div><div class="l">centros de salud y consultorios cerrados</div><div class="d">de 13.024 que hay en España</div></div>
+      <div class="imp"><div class="n" id="iCapP">0</div><div class="l">personas sin su centro de salud</div><div class="d">unas 3.700 por centro</div></div>
       <div class="imp"><div class="n" id="iCole">0</div><div class="l">colegios e institutos públicos cerrados</div><div class="d" id="iColeD">de 19.376 que hay en España</div></div>
       <div class="imp"><div class="n" id="iAlum">0</div><div class="l">alumnos y alumnas sin su centro</div><div class="d">284 por centro de media</div></div>
       <div class="imp"><div class="n" id="iPens">0</div><div class="l">pensionistas con recorte</div><div class="d" id="iPensD">–</div></div>
       <div class="imp"><div class="n" id="iPensEq">0</div><div class="l">pensiones que equivalen al recorte</div><div class="d">con la pensión media de 1.255 € en 14 pagas</div></div>
     </div>
-    <p class="note">Estimaciones: el recorte en sanidad se traduce en hospitales con el coste medio de un hospital público (112,8 M€ al año) y el de educación en centros con el coste medio de un colegio o instituto público (2,17 M€ al año).</p>
+    <p class="note">Estimaciones con el coste medio de cada servicio: un hospital público con sus especialistas (162 M€ al año), un centro de salud o consultorio (1,13 M€ al año) y un colegio o instituto público (2,17 M€ al año).</p>
 
     <div class="items" id="items"></div>
   </section>
@@ -254,7 +256,9 @@ footer .logo{height:52px}
     <h3 id="h-metodo">Cómo se calcula</h3>
     <ul>
       <li><b>Gasto por partida:</b> gasto de todas las administraciones públicas en 2024 (IGAE, clasificación COFOG). Pensiones incluye las del sistema y las de clases pasivas. «Dependencia, bajas y cuidados» es el resto de la protección social sin pensiones, desempleo, familia, exclusión y vivienda.</li>
-      <li><b>Hospitales:</b> 387 hospitales públicos (Catálogo Nacional de Hospitales 2025) y 43.650 M€ de gasto hospitalario. Personas de referencia: 49,8 millones de habitantes entre 387 hospitales.</li>
+      <li><b>Sanidad:</b> el gasto sanitario de 2024 (102.942 M€, IGAE) se reparte con los pesos de la Estadística de Gasto Sanitario Público 2023: 61 % hospitales y especialistas, 14,3 % atención primaria y el resto medicamentos, salud pública e investigación.</li>
+      <li><b>Hospitales:</b> 387 hospitales públicos (Catálogo Nacional de Hospitales 2025). Personas de referencia: 49,8 millones de habitantes entre 387 hospitales.</li>
+      <li><b>Centros de salud:</b> 3.067 centros de salud y 9.957 consultorios locales, con 48 millones de personas asignadas (SIAP).</li>
       <li><b>Colegios:</b> 19.376 centros públicos no universitarios y 5,5 millones de alumnos (curso 2025-2026). Coste medio: gasto en infantil, primaria y secundaria sin los conciertos (41.997 M€) entre esos centros.</li>
       <li><b>Pensiones:</b> 9,22 millones de pensionistas y 10,19 millones de pensiones; pensión media de 1.255,43 € en 14 pagas.</li>
       <li><b>IRPF hoy (2026):</b> escala general estatal y autonómica (19 % a 47 %), cotizaciones del 6,5 %, 2.000 € de gastos, reducción por rendimientos del trabajo, mínimo personal y por hijos y deducción para el salario mínimo (17.094 € al año).</li>
@@ -267,6 +271,7 @@ footer .logo{height:52px}
       <li><a href="https://www.europapress.es/economia/fiscal-00347/noticia-hacienda-avisa-propuesta-vox-cargarse-irpf-tiene-coste-85000-millones-20261013141212.html" target="_blank" rel="noopener">Europa Press: Hacienda cifra en 85.000 millones el coste</a></li>
       <li><a href="https://www.igae.pap.hacienda.gob.es/sitios/igae/es-ES/Contabilidad/ContabilidadNacional/Publicaciones/Documents/AAPP_A/Funcional%202020-2024.pdf" target="_blank" rel="noopener">IGAE: gasto público por funciones 2020-2024</a></li>
       <li><a href="https://www.sanidad.gob.es/estadEstudios/estadisticas/sisInfSanSNS/ofertaRecursos/hospitales/docs/CNH_2025.pdf" target="_blank" rel="noopener">Ministerio de Sanidad: Catálogo Nacional de Hospitales 2025</a></li>
+      <li><a href="https://www.sanidad.gob.es/estadEstudios/estadisticas/docs/siap/RGraficoSIAP_SNS_2024.pdf" target="_blank" rel="noopener">Ministerio de Sanidad: Sistema de Información de Atención Primaria 2024</a></li>
       <li><a href="https://www.educacionfpydeportes.gob.es/dam/jcr:e7a0bdc6-411e-4a1d-9758-746d87ac5837/nota-avance2025-26.pdf" target="_blank" rel="noopener">Ministerio de Educación: datos avance curso 2025-2026</a></li>
       <li><a href="https://taxfoundation.org/data/all/eu/top-personal-income-tax-rates-europe/" target="_blank" rel="noopener">Tax Foundation: tipos máximos del IRPF en Europa, 2026</a></li>
       <li><a href="https://www.sueldovox.es/" target="_blank" rel="noopener">Simulador de sueldo VOX (metodología del IRPF)</a></li>
@@ -292,7 +297,8 @@ footer .logo{height:52px}
 
   const COSTE=85000, POB=49.8e6, SMI=17094, BMAX=5101.2*12;
   const PENSIONES=10.19e6, PENSIONISTAS=9.22e6, PENS_MEDIA_ANUAL=1255.43*14;
-  const HOSP=387, HOSP_GASTO=43650, POB_HOSP=POB/HOSP;
+  const HOSP=387, HOSP_GASTO=62760, POB_HOSP=POB/HOSP;
+  const CAP=13024, CAP_GASTO=14716, POB_CAP=48034708/CAP;
   const COLE=19376, COLE_GASTO=41997, ALUM=5499414, ALUM_COLE=ALUM/COLE;
   const fmt=n=>{const r=Math.round(n);return (r<0?'-':'')+String(Math.abs(r)).replace(/\B(?=(\d{3})+(?!\d))/g,'.');};
   const eur=n=>fmt(n)+' €';
@@ -332,8 +338,11 @@ footer .logo{height:52px}
 
   // Partidas (millones de €, IGAE 2024)
   const P=[
-    {k:'san',n:'Sanidad',s:'Hospitales, centros de salud y medicamentos',g:102942,
+    {k:'san',n:'Hospitales y especialistas',s:'Hospitales públicos y consultas de especialistas',g:62760,
       eq:c=>{const h=c/(HOSP_GASTO/HOSP);return h>=HOSP?'Más que el coste de <b>todos los hospitales públicos</b> de España.':'Equivale a cerrar <b>'+fmt(h)+' hospitales públicos</b>, que atienden a '+big(h*POB_HOSP)+' personas.';}},
+    {k:'cap',n:'Centros de salud',s:'Atención primaria: centros de salud y consultorios',g:14716,
+      eq:c=>{const k=c/(CAP_GASTO/CAP);return k>=CAP?'Más que el coste de <b>toda la atención primaria</b>.':'Equivale a cerrar <b>'+fmt(k)+' centros de salud y consultorios</b>, donde están asignadas '+big(k*POB_CAP)+' personas.';}},
+    {k:'med',n:'Medicamentos y otros gastos sanitarios',s:'Farmacia con receta, salud pública, vacunas e investigación',g:25466},
     {k:'edu',n:'Educación',s:'Colegios, institutos, universidades y becas',g:65862,
       eq:c=>{const k=c/(COLE_GASTO/COLE);return k>=COLE?'Más que el coste de <b>todos los colegios e institutos públicos</b>.':'Equivale a cerrar <b>'+fmt(k)+' colegios e institutos</b> con '+big(k*ALUM_COLE)+' alumnos.';}},
     {k:'pen',n:'Pensiones',s:'Jubilación, viudedad, incapacidad y clases pasivas',g:206130,
@@ -367,6 +376,9 @@ footer .logo{height:52px}
     });
     // Impacto
     const h=Math.min(HOSP,state.san/(HOSP_GASTO/HOSP));
+    const ap=Math.min(CAP,state.cap/(CAP_GASTO/CAP));
+    $('iCap').textContent=fmt(ap);
+    $('iCapP').textContent=big(ap*POB_CAP);
     const k=Math.min(COLE,state.edu/(COLE_GASTO/COLE));
     $('iHosp').textContent=fmt(h);
     $('iHospP').textContent=big(h*POB_HOSP);
