@@ -30,13 +30,14 @@ img{max-width:100%}
 .wrap{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:44px}
 
 /* Cabecera */
-.top{display:flex;justify-content:center}
+.top{display:flex;align-items:center;gap:16px;width:100%;container-type:inline-size}
+.top .brandbox{flex:none}
 .logo{height:64px;width:auto;display:block}
 .wordmark{font-weight:900;font-size:26px;line-height:1;text-align:center}
 .wordmark span{color:var(--red)}
 .wordmark small{display:block;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-top:4px}
 .hero{text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
-h1{font-weight:900;text-transform:uppercase;font-size:clamp(40px,10vw,84px);line-height:.95;letter-spacing:-.03em;margin:0;text-wrap:balance}
+h1{font-weight:900;text-transform:uppercase;font-size:clamp(20px,calc((100cqi - 96px) / 11.2),78px);line-height:1;letter-spacing:-.03em;margin:0;white-space:nowrap;text-align:left;flex:1;min-width:0}
 .kicker{font-weight:700;font-size:clamp(17px,3.6vw,22px);line-height:1.3;margin:0;max-width:30ch;text-wrap:balance}
 .kicker b{color:var(--red)}
 hr{border:0;border-top:4px solid var(--red);margin:0;width:100%}
@@ -120,6 +121,9 @@ footer .logo{height:52px}
   .facts{gap:8px}
   .panel{padding:16px}
   .imp .l{font-size:13px}
+  .top .logo{height:48px}
+  .top .wordmark{font-size:20px}
+  .top .wordmark small{font-size:10px}
 }
 @media (prefers-reduced-motion:reduce){.bar i{transition:none}}
 </style>
@@ -129,10 +133,12 @@ footer .logo{height:52px}
 
   <header class="hero">
     <div class="top">
-      <img class="logo" id="logoTop" src="https://attac.es/wp-content/uploads/2022/03/logo_attac_con_transparencia_150x122-114x92.png" alt="ATTAC España">
-      <div class="wordmark" id="wmTop" hidden><span>%</span>attac<small>España</small></div>
+      <div class="brandbox">
+        <img class="logo" id="logoTop" src="https://attac.es/wp-content/uploads/2022/03/logo_attac_con_transparencia_150x122-114x92.png" alt="ATTAC España">
+        <div class="wordmark" id="wmTop" hidden><span>%</span>attac<small>España</small></div>
+      </div>
+      <h1>¿Qué recortamos?</h1>
     </div>
-    <h1>¿Qué recortamos?</h1>
     <p class="kicker">Vox quiere bajar el IRPF y Hacienda calcula que costaría <b>85.000 millones al año</b>. Decide de dónde sale ese dinero.</p>
     <hr>
     <div class="facts">
