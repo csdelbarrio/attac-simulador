@@ -3,132 +3,150 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Simulador de ATTAC España: cuánto ahorras con el IRPF de Vox, cuánto pierde tu hogar en servicios públicos y qué habría que recortar para cubrir 85.000 millones.">
+<title>¿Qué recortamos? · Simulador ATTAC</title>
+<meta name="description" content="Simulador de ATTAC España: calcula cuánto te ahorrarías con el IRPF de Vox y decide qué servicios públicos habría que recortar para pagar sus 85.000 millones.">
 <meta property="og:title" content="¿Qué recortamos para pagar el IRPF de Vox?">
-<meta property="og:description" content="Hacienda calcula que la rebaja costaría 85.000 millones al año. Calcula tu caso y decide qué servicios públicos recortar.">
+<meta property="og:description" content="Hacienda calcula que la rebaja costaría 85.000 millones al año. Decide qué servicios públicos recortar y mira cuánto te ahorrarías tú.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
 <meta name="twitter:card" content="summary">
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Lo que recorta Vox</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap">
 <style>
-/* Layout: una columna de herramienta, como una hoja de presupuesto: datos arriba, balance, y la mesa de recortes */
+/* Estilo de las creatividades de ATTAC: fondo blanco, Poppins muy negra, filetes rojos, cifras grandes, rojo para lo que se pierde */
 :root{
-  --bg:#f3f4f2; --surface:#ffffff; --ink:#1b2128; --muted:#5d6670; --line:#d9ddd9;
-  --cut:#c0352b; --cut-soft:#f6e2df; --save:#2f7a52; --save-soft:#e0efe6; --accent:#c0352b;
-  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
-  --body:"IBM Plex Sans",ui-sans-serif,system-ui,-apple-system,sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --bg:#ffffff; --ink:#110001; --muted:#55505a; --line:#e7e3e3; --soft:#f6f4f4;
+  --red:#CC0001; --red-soft:#fbe9e9; --blue:#135EC5; --blue-soft:#e8f0fb;
+  --font:"Poppins","Arial Black",Arial,sans-serif;
+  color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#14181c; --surface:#1d2227; --ink:#eef0ee; --muted:#9aa3ab; --line:#30373e;
-  --cut:#f0675b; --cut-soft:#3a2220; --save:#5fbf88; --save-soft:#1c3327; --accent:#f0675b; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#14181c; --surface:#1d2227; --ink:#eef0ee; --muted:#9aa3ab; --line:#30373e;
-  --cut:#f0675b; --cut-soft:#3a2220; --save:#5fbf88; --save-soft:#1c3327; --accent:#f0675b; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;padding:0 16px;padding-block:24px 48px}
-.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
-.brand{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.02em;display:flex;gap:8px;align-items:baseline}
-.brand b{color:var(--accent)}
-.brand span{color:var(--muted);font-weight:600}
-h1{font-family:var(--display);font-weight:800;font-size:clamp(32px,7vw,54px);line-height:1.02;margin:12px 0 14px;text-wrap:balance;letter-spacing:-.02em}
-h1 em{font-style:normal;color:var(--cut)}
-h2{font-family:var(--display);font-weight:800;font-size:clamp(22px,4.5vw,30px);line-height:1.1;margin:0 0 6px;text-wrap:balance}
-.lead{max-width:62ch;color:var(--muted);margin:0}
-.lead strong{color:var(--ink)}
-.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:20px}
-.fact{border-top:3px solid var(--ink);padding-top:8px}
-.fact .n{font-family:var(--display);font-weight:800;font-size:clamp(22px,4.5vw,30px);font-variant-numeric:tabular-nums}
-.fact .l{font-size:13px;color:var(--muted);line-height:1.35}
-.fact.red{border-color:var(--cut)} .fact.red .n{color:var(--cut)}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px}
-.sub{color:var(--muted);margin:0 0 18px;max-width:62ch;font-size:15px}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font-family:var(--font);font-size:16px;line-height:1.55;padding:0 16px;padding-block:20px 48px}
+img{max-width:100%}
+[hidden]{display:none!important}
+.wrap{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:44px}
+
+/* Cabecera */
+.top{display:flex;justify-content:center}
+.logo{height:64px;width:auto;display:block}
+.wordmark{font-weight:900;font-size:26px;line-height:1;text-align:center}
+.wordmark span{color:var(--red)}
+.wordmark small{display:block;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-top:4px}
+.hero{text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+h1{font-weight:900;text-transform:uppercase;font-size:clamp(40px,10vw,84px);line-height:.95;letter-spacing:-.03em;margin:0;text-wrap:balance}
+.kicker{font-weight:700;font-size:clamp(17px,3.6vw,22px);line-height:1.3;margin:0;max-width:30ch;text-wrap:balance}
+.kicker b{color:var(--red)}
+hr{border:0;border-top:4px solid var(--red);margin:0;width:100%}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;text-align:center}
+.fact .n{font-weight:900;font-size:clamp(28px,7vw,52px);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.fact .n.red{color:var(--red)}
+.fact .l{font-weight:700;font-size:clamp(12px,2.6vw,15px);line-height:1.25;margin-top:6px}
+.src{font-size:13px;color:var(--muted);text-align:center;margin:0}
+
+h2{font-weight:900;text-transform:uppercase;font-size:clamp(28px,6.5vw,46px);line-height:1;letter-spacing:-.02em;margin:0 0 10px;text-align:center;text-wrap:balance}
+.sub{color:var(--muted);margin:0 auto 20px;max-width:58ch;text-align:center;font-size:15px}
+
+/* Contador fijo */
+.tally{position:sticky;top:env(safe-area-inset-top,0px);z-index:3;background:var(--bg);border-bottom:4px solid var(--red);padding:10px 0 12px;display:flex;flex-direction:column;gap:8px}
+.tally-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px 12px;flex-wrap:wrap}
+.tally .big{font-weight:900;font-size:clamp(20px,5vw,28px);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.tally .big small{font-size:.6em;font-weight:700;color:var(--muted)}
+.msg{font-size:14px;font-weight:800}
+.msg.ok{color:var(--blue)} .msg.short,.msg.over{color:var(--red)}
+.bar{height:12px;background:var(--soft);border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--red);width:0;transition:width .2s}
+.presets{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:16px}
+button{font:700 14px var(--font);padding:9px 14px;border-radius:999px;border:2px solid var(--ink);background:var(--bg);color:var(--ink);cursor:pointer}
+button:hover{background:var(--ink);color:var(--bg)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+/* Impacto */
+.impact{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin:20px 0 8px;border-top:4px solid var(--ink)}
+.imp{padding:16px 12px 16px 0;border-bottom:1px solid var(--line);min-width:0}
+.imp:nth-child(odd){border-right:1px solid var(--line)}
+.imp:nth-child(even){padding-left:16px}
+.imp .n{font-weight:900;font-size:clamp(30px,7.5vw,50px);line-height:1;letter-spacing:-.03em;color:var(--red);font-variant-numeric:tabular-nums}
+.imp .l{font-weight:700;font-size:14px;line-height:1.3;margin-top:6px}
+.imp .d{font-size:12px;color:var(--muted);line-height:1.35;margin-top:4px}
+.note{font-size:12px;color:var(--muted);margin:0 0 8px}
+
+/* Partidas */
+.items{display:flex;flex-direction:column}
+.item{padding:16px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.item-head{display:flex;justify-content:space-between;gap:4px 12px;align-items:baseline;flex-wrap:wrap}
+.item-name{font-weight:800;font-size:17px}
+.item-name small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.item-val{font-weight:800;font-size:16px;font-variant-numeric:tabular-nums;color:var(--red);white-space:nowrap}
+.item-val span{color:var(--muted);font-weight:600}
+input[type=range]{width:100%;accent-color:var(--red);height:30px;margin:0}
+.eq{font-size:14px;color:var(--muted)}
+.eq b{color:var(--ink);font-weight:800}
+
+/* Salario */
+.panel{background:var(--soft);border-radius:8px;padding:20px}
 .form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .field{display:flex;flex-direction:column;gap:6px;min-width:0}
-.field label{font-size:13px;font-weight:600;letter-spacing:.02em}
+.field label{font-size:13px;font-weight:700}
 .field small{color:var(--muted);font-size:12px;line-height:1.35}
-input[type=number],select{font:500 17px var(--mono);padding:10px 12px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);width:100%}
-input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+input[type=number],select{font:700 17px var(--font);padding:10px 12px;border:2px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);width:100%}
 .balance{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
-.cell{padding:14px;border-radius:4px}
-.cell.save{background:var(--save-soft)} .cell.cut{background:var(--cut-soft)}
-.cell .k{font-size:13px;font-weight:600}
-.cell .v{font-family:var(--display);font-weight:800;font-size:clamp(26px,6vw,38px);font-variant-numeric:tabular-nums;line-height:1.1}
-.cell.save .v{color:var(--save)} .cell.cut .v{color:var(--cut)}
+.cell{padding:16px;border-radius:6px;background:var(--bg);text-align:center}
+.cell .k{font-size:13px;font-weight:700}
+.cell .v{font-weight:900;font-size:clamp(28px,6.5vw,42px);font-variant-numeric:tabular-nums;line-height:1.1;letter-spacing:-.02em}
+.cell.save .v{color:var(--blue)} .cell.cut .v{color:var(--red)}
 .cell .d{font-size:13px;color:var(--muted)}
-.verdict{margin-top:12px;padding:14px;border-left:4px solid var(--cut);background:var(--bg);font-weight:500}
-.verdict.win{border-color:var(--save)}
-.tally{position:sticky;top:env(safe-area-inset-top,0px);z-index:2;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
-.tally-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
-.tally .big{font-family:var(--display);font-weight:800;font-size:22px;font-variant-numeric:tabular-nums}
-.tally .msg{font-size:14px;font-weight:600}
-.msg.ok{color:var(--save)} .msg.short,.msg.over{color:var(--cut)}
-.bar{height:10px;background:var(--bg);border-radius:5px;overflow:hidden;border:1px solid var(--line)}
-.bar i{display:block;height:100%;background:var(--cut);width:0;transition:width .2s}
-.presets{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
-button{font:600 14px var(--body);padding:8px 12px;border-radius:4px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
-button:hover{border-color:var(--ink)}
-.items{display:flex;flex-direction:column}
-.item{padding:16px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
-.item-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
-.item-name{font-weight:600}
-.item-name small{display:block;font-weight:400;color:var(--muted);font-size:12px}
-.item-val{font-family:var(--mono);font-size:15px;font-variant-numeric:tabular-nums;color:var(--cut);white-space:nowrap}
-.item-val span{color:var(--muted)}
-input[type=range]{width:100%;accent-color:var(--cut);height:28px}
-.eq{font-size:14px;color:var(--muted)}
-.eq b{color:var(--ink);font-weight:600}
+.verdict{margin-top:12px;padding:14px 16px;background:var(--bg);border-left:6px solid var(--red);font-weight:700}
+.verdict.win{border-color:var(--blue)}
+
 table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:15px}
-th,td{text-align:right;padding:10px 8px;border-bottom:1px solid var(--line)}
+th,td{text-align:right;padding:10px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
 th:first-child,td:first-child{text-align:left}
-th{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600}
-td.s{color:var(--save);font-weight:600;font-family:var(--mono)}
-.tbl{overflow-x:auto}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700}
+td.s{color:var(--blue);font-weight:800}
+.tbl{overflow-x:auto;margin-top:8px}
+
 .method{font-size:14px;color:var(--muted)}
-.method h3{font-family:var(--display);font-size:18px;color:var(--ink);margin:0 0 8px}
-.method ul{padding-left:18px;margin:0 0 16px;display:flex;flex-direction:column;gap:6px}
+.method h3{font-weight:900;text-transform:uppercase;font-size:18px;color:var(--ink);margin:0 0 8px}
+.method ul{padding-left:18px;margin:0 0 18px;display:flex;flex-direction:column;gap:6px}
 .method a{color:var(--ink)}
-footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
-@media (max-width:560px){.form,.balance{grid-template-columns:1fr}.facts{grid-template-columns:1fr 1fr 1fr;gap:8px}.fact .l{font-size:12px}.panel{padding:16px}}
+footer{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;font-size:13px;color:var(--muted);border-top:4px solid var(--red);padding-top:20px}
+footer .logo{height:52px}
+
+@media (max-width:560px){
+  .form,.balance{grid-template-columns:1fr}
+  .facts{gap:8px}
+  .panel{padding:16px}
+  .imp .l{font-size:13px}
+}
 @media (prefers-reduced-motion:reduce){.bar i{transition:none}}
 </style>
 </head>
 <body>
-
 <div class="wrap">
-  <header>
-    <div class="brand"><b>attac</b><span>España</span></div>
-    <h1>¿Qué recortamos para pagar el <em>IRPF de Vox</em>?</h1>
-    <p class="lead">Según Hacienda, la rebaja del IRPF que propone Vox (mínimo exento de 22.000 €, 15 % hasta 70.000 € y 25 % por encima) costaría <strong>85.000 millones de euros al año</strong>. Calcula cuánto te ahorrarías tú y decide qué servicios públicos habría que recortar para pagarlo.</p>
-    <div class="facts">
-      <div class="fact red"><div class="n">85.000 M€</div><div class="l">menos de recaudación al año</div></div>
-      <div class="fact"><div class="n">140.000 M€</div><div class="l">recauda hoy el IRPF</div></div>
-      <div class="fact"><div class="n">61 %</div><div class="l">del IRPF desaparecería</div></div>
-    </div>
-  </header>
 
-  <section class="panel" aria-labelledby="h-bolsillo">
-    <h2 id="h-bolsillo">Lo que ganas y lo que pierdes</h2>
-    <p class="sub">El ejemplo es un hogar de cuatro personas con dos sueldos. Cámbialo por tus datos.</p>
-    <div class="form">
-      <div class="field"><label for="s1">Tu salario bruto anual (€)</label><input id="s1" type="number" min="0" step="500" value="30000" inputmode="numeric"></div>
-      <div class="field"><label for="s2">Otro sueldo en casa (€)</label><input id="s2" type="number" min="0" step="500" value="20000" inputmode="numeric"><small>Pon 0 si no hay otro sueldo.</small></div>
-      <div class="field"><label for="hijos">Hijos a cargo</label><select id="hijos"><option value="0">Ninguno</option><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4 o más</option></select></div>
-      <div class="field"><label for="hogar">Personas en el hogar</label><input id="hogar" type="number" min="1" max="12" step="1" value="4" inputmode="numeric"></div>
+  <header class="hero">
+    <div class="top">
+      <img class="logo" id="logoTop" src="https://attac.es/wp-content/uploads/2022/03/logo_attac_con_transparencia_150x122-114x92.png" alt="ATTAC España">
+      <div class="wordmark" id="wmTop" hidden><span>%</span>attac<small>España</small></div>
     </div>
-    <div class="balance">
-      <div class="cell save"><div class="k">Tu hogar se ahorra en IRPF</div><div class="v" id="ahorro">–</div><div class="d" id="ahorroMes">–</div></div>
-      <div class="cell cut"><div class="k">Tu hogar pierde en servicios</div><div class="v" id="pierde">–</div><div class="d" id="pierdeDet">–</div></div>
+    <h1>¿Qué recortamos?</h1>
+    <p class="kicker">Vox quiere bajar el IRPF y Hacienda calcula que costaría <b>85.000 millones al año</b>. Decide de dónde sale ese dinero.</p>
+    <hr>
+    <div class="facts">
+      <div class="fact"><div class="n red">85.000 M€</div><div class="l">menos de recaudación cada año</div></div>
+      <div class="fact"><div class="n">140.000 M€</div><div class="l">recauda hoy el IRPF</div></div>
+      <div class="fact"><div class="n red">61 %</div><div class="l">del IRPF desaparecería</div></div>
     </div>
-    <div class="verdict" id="verdict" aria-live="polite">–</div>
-  </section>
+    <hr>
+    <p class="src">Propuesta de Vox: mínimo exento de 22.000 €, 15 % hasta 70.000 € y 25 % por encima. Coste según el Ministerio de Hacienda (13/10/2026).</p>
+  </header>
 
   <section aria-labelledby="h-recortes">
     <h2 id="h-recortes">Tú decides dónde recortar</h2>
-    <p class="sub">Mueve los deslizadores hasta reunir los 85.000 millones. Cada partida muestra su gasto público anual y lo que supondría el recorte.</p>
+    <p class="sub">Mueve los deslizadores hasta reunir los 85.000 millones. Abajo verás qué supone cada recorte en hospitales, colegios y pensiones.</p>
     <div class="presets">
       <button type="button" id="pProp">Recorte igual en todo</button>
       <button type="button" id="pNoPens">Sin tocar pensiones</button>
@@ -138,45 +156,92 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
       <div class="tally-top"><span class="big" id="total">0 M€</span><span class="msg" id="tmsg">–</span></div>
       <div class="bar"><i id="tbar"></i></div>
     </div>
+
+    <div class="impact" aria-live="polite">
+      <div class="imp"><div class="n" id="iHosp">0</div><div class="l">hospitales públicos cerrados</div><div class="d" id="iHospD">de 387 que hay en España</div></div>
+      <div class="imp"><div class="n" id="iHospP">0</div><div class="l">personas sin su hospital de referencia</div><div class="d">unas 128.700 por hospital</div></div>
+      <div class="imp"><div class="n" id="iCole">0</div><div class="l">colegios e institutos públicos cerrados</div><div class="d" id="iColeD">de 19.376 que hay en España</div></div>
+      <div class="imp"><div class="n" id="iAlum">0</div><div class="l">alumnos y alumnas sin su centro</div><div class="d">284 por centro de media</div></div>
+      <div class="imp"><div class="n" id="iPens">0</div><div class="l">pensionistas con recorte</div><div class="d" id="iPensD">–</div></div>
+      <div class="imp"><div class="n" id="iPensEq">0</div><div class="l">pensiones que equivalen al recorte</div><div class="d">con la pensión media de 1.255 € en 14 pagas</div></div>
+    </div>
+    <p class="note">Estimaciones: el recorte en sanidad se traduce en hospitales con el coste medio de un hospital público (112,8 M€ al año) y el de educación en centros con el coste medio de un colegio o instituto público (2,17 M€ al año).</p>
+
     <div class="items" id="items"></div>
   </section>
 
-  <section class="panel" aria-labelledby="h-quien">
-    <h2 id="h-quien">¿A quién beneficia?</h2>
-    <p class="sub">Ahorro anual de una persona sin hijos según su sueldo bruto, con el mismo cálculo del simulador.</p>
+  <section aria-labelledby="h-bolsillo">
+    <h2 id="h-bolsillo">¿Y tú qué ganas?</h2>
+    <p class="sub">El ejemplo es un hogar de cuatro personas con dos sueldos. Cámbialo por tus datos.</p>
+    <div class="panel">
+      <div class="form">
+        <div class="field"><label for="s1">Tu salario bruto anual (€)</label><input id="s1" type="number" min="0" step="500" value="30000" inputmode="numeric"></div>
+        <div class="field"><label for="s2">Otro sueldo en casa (€)</label><input id="s2" type="number" min="0" step="500" value="20000" inputmode="numeric"><small>Pon 0 si no hay otro sueldo.</small></div>
+        <div class="field"><label for="hijos">Hijos a cargo</label><select id="hijos"><option value="0">Ninguno</option><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4 o más</option></select></div>
+        <div class="field"><label for="hogar">Personas en el hogar</label><input id="hogar" type="number" min="1" max="12" step="1" value="4" inputmode="numeric"></div>
+      </div>
+      <div class="balance">
+        <div class="cell save"><div class="k">Tu hogar se ahorra en IRPF</div><div class="v" id="ahorro">–</div><div class="d" id="ahorroMes">–</div></div>
+        <div class="cell cut"><div class="k">Tu hogar pierde en servicios</div><div class="v" id="pierde">–</div><div class="d" id="pierdeDet">–</div></div>
+      </div>
+      <div class="verdict" id="verdict" aria-live="polite">–</div>
+    </div>
+
+    <h2 style="margin-top:40px;font-size:clamp(22px,5vw,32px)">¿A quién beneficia?</h2>
+    <p class="sub">Ahorro anual de una persona sin hijos según su sueldo bruto.</p>
     <div class="tbl"><table>
-      <thead><tr><th>Sueldo bruto</th><th>IRPF hoy</th><th>IRPF con Vox</th><th>Ahorro</th></tr></thead>
+      <thead><tr><th>Sueldo bruto</th><th>IRPF hoy</th><th>Con Vox</th><th>Ahorro</th></tr></thead>
       <tbody id="tabla"></tbody>
     </table></div>
-    <p class="sub" style="margin:14px 0 0">Hacienda calcula lo mismo: con el salario mínimo te ahorras 0 €; con 100.000 €, 18.935 €; con un millón, 212.333 €.</p>
+    <p class="sub" style="margin-top:14px">Hacienda calcula lo mismo: con el salario mínimo te ahorras 0 €; con 100.000 €, 18.935 €; con un millón, 212.333 €.</p>
   </section>
 
   <section class="method" aria-labelledby="h-metodo">
     <h3 id="h-metodo">Cómo se calcula</h3>
     <ul>
-      <li><b>IRPF actual 2026:</b> escala estatal y autonómica general (19 % a 47 %), cotizaciones del 6,5 %, 2.000 € de gastos, reducción por rendimientos del trabajo, mínimo personal (5.550 €), mínimo por hijos repartido al 50 % y deducción para el salario mínimo (17.094 €/año).</li>
-      <li><b>IRPF con Vox:</b> 15 % hasta 70.000 € y 25 % por encima, mínimo exento de 22.000 €, 4 puntos menos por hijo y sin la reducción por rendimientos del trabajo. Es el mismo método que usa sueldovox.es; sus resultados coinciden con los ejemplos de Hacienda.</li>
-      <li><b>Lo que pierde tu hogar:</b> 85.000 millones repartidos a partes iguales entre 49,8 millones de habitantes, unos 1.707 € por persona y año. Los servicios públicos los usamos todas las personas, también quienes no pagan IRPF.</li>
-      <li><b>Gasto por partida:</b> gasto de todas las administraciones públicas en 2024 (IGAE, clasificación COFOG). Pensiones incluye las del sistema y las de clases pasivas (10,19 millones de pensiones). «Dependencia, bajas y cuidados» es el resto de la protección social sin contar pensiones, desempleo, familia, exclusión y vivienda.</li>
-      <li>Simulación orientativa. No incluye los efectos de la rebaja sobre la economía ni otras propuestas fiscales de Vox (IVA, Sociedades, Sucesiones).</li>
+      <li><b>Gasto por partida:</b> gasto de todas las administraciones públicas en 2024 (IGAE, clasificación COFOG). Pensiones incluye las del sistema y las de clases pasivas. «Dependencia, bajas y cuidados» es el resto de la protección social sin pensiones, desempleo, familia, exclusión y vivienda.</li>
+      <li><b>Hospitales:</b> 387 hospitales públicos (Catálogo Nacional de Hospitales 2025) y 43.650 M€ de gasto hospitalario. Personas de referencia: 49,8 millones de habitantes entre 387 hospitales.</li>
+      <li><b>Colegios:</b> 19.376 centros públicos no universitarios y 5,5 millones de alumnos (curso 2025-2026). Coste medio: gasto en infantil, primaria y secundaria sin los conciertos (41.997 M€) entre esos centros.</li>
+      <li><b>Pensiones:</b> 9,22 millones de pensionistas y 10,19 millones de pensiones; pensión media de 1.255,43 € en 14 pagas.</li>
+      <li><b>IRPF hoy (2026):</b> escala general estatal y autonómica (19 % a 47 %), cotizaciones del 6,5 %, 2.000 € de gastos, reducción por rendimientos del trabajo, mínimo personal y por hijos y deducción para el salario mínimo (17.094 € al año).</li>
+      <li><b>IRPF con Vox:</b> 15 % hasta 70.000 € y 25 % por encima, mínimo exento de 22.000 €, 4 puntos menos por hijo y sin reducción por rendimientos del trabajo. Mismo método que sueldovox.es; coincide con los ejemplos de Hacienda.</li>
+      <li><b>Lo que pierde tu hogar:</b> 85.000 millones repartidos a partes iguales entre 49,8 millones de habitantes: unos 1.707 € por persona y año.</li>
+      <li>Simulación orientativa. No incluye efectos sobre la economía ni otras propuestas fiscales de Vox (IVA, Sociedades, Sucesiones).</li>
     </ul>
     <h3>Fuentes</h3>
     <ul>
-      <li><a href="https://www.europapress.es/economia/fiscal-00347/noticia-hacienda-avisa-propuesta-vox-cargarse-irpf-tiene-coste-85000-millones-20261013141212.html" target="_blank" rel="noopener">Europa Press: Hacienda cifra en 85.000 millones el coste (13/10/2026)</a></li>
-      <li><a href="https://www.igae.pap.hacienda.gob.es/sitios/igae/es-ES/Contabilidad/ContabilidadNacional/Publicaciones/Documents/AAPP_A/Funcional%202020-2024.pdf" target="_blank" rel="noopener">IGAE: gasto de las Administraciones públicas por funciones 2020-2024</a></li>
+      <li><a href="https://www.europapress.es/economia/fiscal-00347/noticia-hacienda-avisa-propuesta-vox-cargarse-irpf-tiene-coste-85000-millones-20261013141212.html" target="_blank" rel="noopener">Europa Press: Hacienda cifra en 85.000 millones el coste</a></li>
+      <li><a href="https://www.igae.pap.hacienda.gob.es/sitios/igae/es-ES/Contabilidad/ContabilidadNacional/Publicaciones/Documents/AAPP_A/Funcional%202020-2024.pdf" target="_blank" rel="noopener">IGAE: gasto público por funciones 2020-2024</a></li>
+      <li><a href="https://www.sanidad.gob.es/estadEstudios/estadisticas/sisInfSanSNS/ofertaRecursos/hospitales/docs/CNH_2025.pdf" target="_blank" rel="noopener">Ministerio de Sanidad: Catálogo Nacional de Hospitales 2025</a></li>
+      <li><a href="https://www.educacionfpydeportes.gob.es/dam/jcr:e7a0bdc6-411e-4a1d-9758-746d87ac5837/nota-avance2025-26.pdf" target="_blank" rel="noopener">Ministerio de Educación: datos avance curso 2025-2026</a></li>
       <li><a href="https://www.sueldovox.es/" target="_blank" rel="noopener">Simulador de sueldo VOX (metodología del IRPF)</a></li>
-      <li><a href="https://www.boe.es/boe/dias/2026/02/19/pdfs/BOE-A-2026-3815.pdf" target="_blank" rel="noopener">BOE: salario mínimo 2026</a></li>
     </ul>
   </section>
 
-  <footer>ATTAC España · Asociación por la Tributación de las Transacciones Financieras y la Acción Ciudadana. Datos revisados el 13 de octubre de 2026.</footer>
+  <footer>
+    <img class="logo" id="logoBot" src="https://attac.es/wp-content/uploads/2022/03/logo_attac_con_transparencia_150x122-114x92.png" alt="ATTAC España">
+    <div class="wordmark" id="wmBot" hidden><span>%</span>attac<small>España</small></div>
+    <div>Asociación por la Tributación de las Transacciones Financieras y la Acción Ciudadana · <a href="https://attac.es" target="_blank" rel="noopener" style="color:inherit">attac.es</a></div>
+    <div>Datos revisados el 13 de octubre de 2026.</div>
+  </footer>
 </div>
 
 <script>
 (function(){
-  const COSTE=85000, POB=49.8e6, PENSIONES=10.19e6, SMI=17094, BMAX=5101.2*12;
-  const fmt=n=>Math.round(n).toLocaleString('es-ES');
+  // Si el logo no carga, se muestra el texto de marca
+  [['logoTop','wmTop'],['logoBot','wmBot']].forEach(([i,w])=>{
+    const img=document.getElementById(i);
+    const fail=()=>{img.hidden=true;document.getElementById(w).hidden=false;};
+    if(img.complete&&img.naturalWidth===0)fail(); else img.addEventListener('error',fail);
+  });
+
+  const COSTE=85000, POB=49.8e6, SMI=17094, BMAX=5101.2*12;
+  const PENSIONES=10.19e6, PENSIONISTAS=9.22e6, PENS_MEDIA_ANUAL=1255.43*14;
+  const HOSP=387, HOSP_GASTO=43650, POB_HOSP=POB/HOSP;
+  const COLE=19376, COLE_GASTO=41997, ALUM=5499414, ALUM_COLE=ALUM/COLE;
+  const fmt=n=>{const r=Math.round(n);return (r<0?'-':'')+String(Math.abs(r)).replace(/\B(?=(\d{3})+(?!\d))/g,'.');};
   const eur=n=>fmt(n)+' €';
+  const big=n=>n>=1e6?(n/1e6).toLocaleString('es-ES',{maximumFractionDigits:1})+' M':fmt(n);
 
   // IRPF
   const HOY=[[12450,.19],[20200,.24],[35200,.30],[60000,.37],[300000,.45],[1e12,.47]];
@@ -188,15 +253,13 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
     if(!(b>0))return {hoy:0,vox:0};
     const ss=Math.min(b,BMAX)*.065, rn=Math.max(0,b-ss-2000), base=Math.max(0,rn-red(rn));
     const mins=5550+minD(h);
-    let c=Math.max(0,esc(base,HOY)-esc(Math.min(base,mins),HOY));
+    const c=Math.max(0,esc(base,HOY)-esc(Math.min(base,mins),HOY));
     const d=b<=SMI?590.89:b<20048.45?590.89-.2*(b-SMI):0;
     const hoy=Math.max(0,c-d);
     const V=[[70000,Math.max(0,.15-.04*h)],[1e12,Math.max(0,.25-.04*h)]];
-    const mv=22000+minD(h);
-    const vox=Math.max(0,esc(rn,V)-esc(Math.min(rn,mv),V));
+    const vox=Math.max(0,esc(rn,V)-esc(Math.min(rn,22000+minD(h)),V));
     return {hoy,vox};
   }
-
   const $=id=>document.getElementById(id);
   function bolsillo(){
     const h=+$('hijos').value, n=Math.max(1,+$('hogar').value||1);
@@ -214,9 +277,12 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
 
   // Partidas (millones de €, IGAE 2024)
   const P=[
-    {k:'san',n:'Sanidad',s:'Hospitales, centros de salud y medicamentos',g:102942,eq:c=>'Como cerrar la sanidad pública <b>'+fmt(c/102942*365)+' días</b> al año.'},
-    {k:'edu',n:'Educación',s:'Colegios, institutos, universidades y becas',g:65862,eq:c=>'Como cerrar colegios y universidades <b>'+fmt(c/65862*365)+' días</b> al año.'},
-    {k:'pen',n:'Pensiones',s:'Jubilación, viudedad, incapacidad y clases pasivas',g:206130,eq:c=>'<b>'+eur(c*1e6/PENSIONES/14)+' menos</b> por pensión en cada una de las 14 pagas.'},
+    {k:'san',n:'Sanidad',s:'Hospitales, centros de salud y medicamentos',g:102942,
+      eq:c=>{const h=c/(HOSP_GASTO/HOSP);return h>=HOSP?'Más que el coste de <b>todos los hospitales públicos</b> de España.':'Equivale a cerrar <b>'+fmt(h)+' hospitales públicos</b>, que atienden a '+big(h*POB_HOSP)+' personas.';}},
+    {k:'edu',n:'Educación',s:'Colegios, institutos, universidades y becas',g:65862,
+      eq:c=>{const k=c/(COLE_GASTO/COLE);return k>=COLE?'Más que el coste de <b>todos los colegios e institutos públicos</b>.':'Equivale a cerrar <b>'+fmt(k)+' colegios e institutos</b> con '+big(k*ALUM_COLE)+' alumnos.';}},
+    {k:'pen',n:'Pensiones',s:'Jubilación, viudedad, incapacidad y clases pasivas',g:206130,
+      eq:c=>'<b>'+eur(c*1e6/PENSIONES/14)+' menos</b> por pensión en cada una de las 14 pagas.'},
     {k:'des',n:'Desempleo',s:'Prestaciones y subsidios por paro',g:24077},
     {k:'dep',n:'Dependencia, bajas y cuidados',s:'Dependencia, incapacidad temporal y otros cuidados',g:38369},
     {k:'fam',n:'Familia e infancia',s:'Permisos, prestaciones por hijo y ayudas',g:15294},
@@ -225,33 +291,37 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
     {k:'tra',n:'Transporte público',s:'Cercanías, autobuses, carreteras y ferrocarril',g:28634},
     {k:'cul',n:'Cultura y deporte',s:'Bibliotecas, museos, polideportivos y medios públicos',g:17718}
   ];
-  const STEP=500;
-  const state={};
-  const box=$('items');
+  const STEP=500, state={}, box=$('items');
   P.forEach(p=>{
-    const max=Math.min(p.g,COSTE);
     const el=document.createElement('div');el.className='item';
     el.innerHTML='<div class="item-head"><label class="item-name" for="r-'+p.k+'">'+p.n+'<small>'+p.s+' · gasto anual '+fmt(p.g)+' M€</small></label><span class="item-val" id="v-'+p.k+'">0 M€</span></div>'+
-      '<input type="range" id="r-'+p.k+'" min="0" max="'+max+'" step="'+STEP+'" value="0" aria-describedby="e-'+p.k+'">'+
+      '<input type="range" id="r-'+p.k+'" min="0" max="'+Math.min(p.g,COSTE)+'" step="'+STEP+'" value="0" aria-describedby="e-'+p.k+'">'+
       '<div class="eq" id="e-'+p.k+'">Sin recorte.</div>';
     box.appendChild(el);
     el.querySelector('input').addEventListener('input',e=>{state[p.k]=+e.target.value;render();});
     state[p.k]=0;
   });
+  const pct=(c,g)=>(c/g*100).toLocaleString('es-ES',{maximumFractionDigits:1});
   function render(){
     let t=0;
     P.forEach(p=>{
       const c=state[p.k];t+=c;
       $('r-'+p.k).value=c;
-      const pct=c/p.g*100;
-      $('v-'+p.k).innerHTML='−'+fmt(c)+' M€ <span>('+pct.toLocaleString('es-ES',{maximumFractionDigits:1})+' %)</span>';
-      let txt;
-      if(!c)txt='Sin recorte.';
-      else if(p.eq)txt=p.eq(c);
-      else txt='Recorte del <b>'+pct.toLocaleString('es-ES',{maximumFractionDigits:1})+' %</b>: como suprimirla <b>'+fmt(c/p.g*365)+' días</b> al año.';
-      $('e-'+p.k).innerHTML=txt;
+      $('v-'+p.k).innerHTML='−'+fmt(c)+' M€ <span>('+pct(c,p.g)+' %)</span>';
+      $('e-'+p.k).innerHTML=!c?'Sin recorte.':p.eq?p.eq(c):'Recorte del <b>'+pct(c,p.g)+' %</b>: como suprimirla <b>'+fmt(c/p.g*365)+' días</b> al año.';
     });
-    $('total').textContent=fmt(t)+' de 85.000 M€';
+    // Impacto
+    const h=Math.min(HOSP,state.san/(HOSP_GASTO/HOSP));
+    const k=Math.min(COLE,state.edu/(COLE_GASTO/COLE));
+    $('iHosp').textContent=fmt(h);
+    $('iHospP').textContent=big(h*POB_HOSP);
+    $('iCole').textContent=fmt(k);
+    $('iAlum').textContent=big(k*ALUM_COLE);
+    $('iPens').textContent=state.pen?big(PENSIONISTAS):'0';
+    $('iPensD').textContent=state.pen?eur(state.pen*1e6/PENSIONES/14)+' menos al mes por pensión':'Sin recorte en pensiones';
+    $('iPensEq').textContent=big(state.pen*1e6/PENS_MEDIA_ANUAL);
+    // Contador
+    $('total').innerHTML=fmt(t)+' <small>de 85.000 M€</small>';
     $('tbar').style.width=Math.min(100,t/COSTE*100)+'%';
     const m=$('tmsg');
     if(Math.abs(t-COSTE)<STEP/2){m.className='msg ok';m.textContent='Cubierto. Este es el precio de la rebaja.';}
@@ -262,25 +332,21 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
     const tot=keys.reduce((s,k)=>s+P.find(p=>p.k===k).g,0);
     P.forEach(p=>state[p.k]=0);
     let acc=0;
-    keys.forEach((k,i)=>{const p=P.find(x=>x.k===k);let c=Math.round(COSTE*p.g/tot/STEP)*STEP;c=Math.min(c,Math.min(p.g,COSTE));state[k]=c;acc+=c;});
-    // ajustar redondeo en la partida mayor
-    const big=keys.map(k=>P.find(p=>p.k===k)).sort((a,b)=>b.g-a.g)[0];
-    state[big.k]=Math.max(0,state[big.k]+(COSTE-acc));
+    keys.forEach(k=>{const p=P.find(x=>x.k===k);const c=Math.min(Math.round(COSTE*p.g/tot/STEP)*STEP,p.g,COSTE);state[k]=c;acc+=c;});
+    const top=keys.map(k=>P.find(p=>p.k===k)).sort((a,b)=>b.g-a.g)[0];
+    state[top.k]=Math.max(0,state[top.k]+(COSTE-acc));
     render();
   }
   $('pProp').onclick=()=>repartir(P.map(p=>p.k));
   $('pNoPens').onclick=()=>repartir(P.filter(p=>p.k!=='pen').map(p=>p.k));
   $('pZero').onclick=()=>{P.forEach(p=>state[p.k]=0);render();};
 
-  // Tabla
   const tb=$('tabla');
   [17094,25000,40000,60000,100000,300000,1000000].forEach(b=>{
-    const r=irpf(b,0);
-    const tr=document.createElement('tr');
+    const r=irpf(b,0), tr=document.createElement('tr');
     tr.innerHTML='<td>'+eur(b)+(b===SMI?' <small>(SMI)</small>':'')+'</td><td>'+eur(r.hoy)+'</td><td>'+eur(r.vox)+'</td><td class="s">'+eur(r.hoy-r.vox)+'</td>';
     tb.appendChild(tr);
   });
-
   ['s1','s2','hijos','hogar'].forEach(id=>$(id).addEventListener('input',bolsillo));
   bolsillo();
   repartir(P.map(p=>p.k));
