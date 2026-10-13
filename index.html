@@ -42,7 +42,7 @@ h1{font-weight:900;text-transform:uppercase;font-size:clamp(20px,calc((100cqi - 
 .kicker b{color:var(--red)}
 hr{border:0;border-top:4px solid var(--red);margin:0;width:100%}
 .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;text-align:center}
-.fact .n{font-weight:900;font-size:clamp(28px,7vw,52px);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.fact .n{font-weight:900;font-size:clamp(14px,5.4cqi,44px);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
 .fact .n.red{color:var(--red)}
 .fact .l{font-weight:700;font-size:clamp(12px,2.6vw,15px);line-height:1.25;margin-top:6px}
 .src{font-size:13px;color:var(--muted);text-align:center;margin:0}
@@ -109,6 +109,14 @@ th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute
 td.s{color:var(--blue);font-weight:800}
 .tbl{overflow-x:auto;margin-top:8px}
 
+.eu td.barc,.eu th.barc{width:45%;padding-left:12px;padding-right:12px}
+.eubar{display:block;height:12px;background:var(--ink);border-radius:2px}
+.eu tr.es td{font-weight:800}
+.eu tr.es .eubar{background:var(--blue)}
+.eu tr.vox td{font-weight:900;color:var(--red)}
+.eu tr.vox .eubar{background:var(--red)}
+.facts{container-type:inline-size;width:100%}
+.fact .n{white-space:nowrap}
 .method{font-size:14px;color:var(--muted)}
 .method h3{font-weight:900;text-transform:uppercase;font-size:18px;color:var(--ink);margin:0 0 8px}
 .method ul{padding-left:18px;margin:0 0 18px;display:flex;flex-direction:column;gap:6px}
@@ -202,6 +210,46 @@ footer .logo{height:52px}
     <p class="sub" style="margin-top:14px">Hacienda calcula lo mismo: con el salario mínimo te ahorras 0 €; con 100.000 €, 18.935 €; con un millón, 212.333 €.</p>
   </section>
 
+
+  <section aria-labelledby="h-ue">
+    <h2 id="h-ue" style="font-size:clamp(22px,5vw,32px)">El IRPF en la Unión Europea</h2>
+    <p class="sub">Tipo máximo del impuesto sobre la renta en los 27 países en 2026, sumando el tramo estatal y el regional. Con Vox, España bajaría al 25 %: solo 5 países de la UE tendrían un tipo máximo más bajo. La media de la UE es del 40,1 %.</p>
+    <div class="tbl"><table class="eu">
+      <thead><tr><th>País</th><th class="barc"></th><th>Tipo máximo</th></tr></thead>
+      <tbody>
+        <tr><td>Dinamarca</td><td class="barc"><span class="eubar" style="width:100.0%"></span></td><td>60,5 %</td></tr>
+        <tr><td>Francia</td><td class="barc"><span class="eubar" style="width:91.6%"></span></td><td>55,4 %</td></tr>
+        <tr><td>Austria</td><td class="barc"><span class="eubar" style="width:90.9%"></span></td><td>55,0 %</td></tr>
+        <tr class="es"><td>España</td><td class="barc"><span class="eubar" style="width:89.3%"></span></td><td>54,0 %</td></tr>
+        <tr><td>Bélgica</td><td class="barc"><span class="eubar" style="width:88.4%"></span></td><td>53,5 %</td></tr>
+        <tr><td>Portugal</td><td class="barc"><span class="eubar" style="width:87.6%"></span></td><td>53,0 %</td></tr>
+        <tr><td>Suecia</td><td class="barc"><span class="eubar" style="width:86.4%"></span></td><td>52,3 %</td></tr>
+        <tr><td>Eslovenia</td><td class="barc"><span class="eubar" style="width:82.6%"></span></td><td>50,0 %</td></tr>
+        <tr><td>Países Bajos</td><td class="barc"><span class="eubar" style="width:81.8%"></span></td><td>49,5 %</td></tr>
+        <tr><td>Irlanda</td><td class="barc"><span class="eubar" style="width:79.3%"></span></td><td>48,0 %</td></tr>
+        <tr><td>Alemania</td><td class="barc"><span class="eubar" style="width:78.5%"></span></td><td>47,5 %</td></tr>
+        <tr><td>Italia</td><td class="barc"><span class="eubar" style="width:78.0%"></span></td><td>47,2 %</td></tr>
+        <tr><td>Luxemburgo</td><td class="barc"><span class="eubar" style="width:75.7%"></span></td><td>45,8 %</td></tr>
+        <tr><td>Finlandia</td><td class="barc"><span class="eubar" style="width:74.4%"></span></td><td>45,0 %</td></tr>
+        <tr><td>Grecia</td><td class="barc"><span class="eubar" style="width:72.7%"></span></td><td>44,0 %</td></tr>
+        <tr><td>Letonia</td><td class="barc"><span class="eubar" style="width:59.5%"></span></td><td>36,0 %</td></tr>
+        <tr><td>Polonia</td><td class="barc"><span class="eubar" style="width:59.5%"></span></td><td>36,0 %</td></tr>
+        <tr><td>Chipre</td><td class="barc"><span class="eubar" style="width:57.9%"></span></td><td>35,0 %</td></tr>
+        <tr><td>Malta</td><td class="barc"><span class="eubar" style="width:57.9%"></span></td><td>35,0 %</td></tr>
+        <tr><td>Eslovaquia</td><td class="barc"><span class="eubar" style="width:57.9%"></span></td><td>35,0 %</td></tr>
+        <tr><td>Croacia</td><td class="barc"><span class="eubar" style="width:54.5%"></span></td><td>33,0 %</td></tr>
+        <tr><td>Lituania</td><td class="barc"><span class="eubar" style="width:52.9%"></span></td><td>32,0 %</td></tr>
+        <tr class="vox"><td>España con Vox</td><td class="barc"><span class="eubar" style="width:41.3%"></span></td><td>25,0 %</td></tr>
+        <tr><td>Chequia</td><td class="barc"><span class="eubar" style="width:38.0%"></span></td><td>23,0 %</td></tr>
+        <tr><td>Estonia</td><td class="barc"><span class="eubar" style="width:36.4%"></span></td><td>22,0 %</td></tr>
+        <tr><td>Hungría</td><td class="barc"><span class="eubar" style="width:24.8%"></span></td><td>15,0 %</td></tr>
+        <tr><td>Bulgaria</td><td class="barc"><span class="eubar" style="width:16.5%"></span></td><td>10,0 %</td></tr>
+        <tr><td>Rumanía</td><td class="barc"><span class="eubar" style="width:16.5%"></span></td><td>10,0 %</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note" style="margin-top:10px">Fuente: Tax Foundation, «Top Personal Income Tax Rates in Europe, 2026». Para España recoge el tipo máximo autonómico más alto (54 %); la escala general es del 47 %. No incluye cotizaciones sociales.</p>
+  </section>
+
   <section class="method" aria-labelledby="h-metodo">
     <h3 id="h-metodo">Cómo se calcula</h3>
     <ul>
@@ -220,6 +268,7 @@ footer .logo{height:52px}
       <li><a href="https://www.igae.pap.hacienda.gob.es/sitios/igae/es-ES/Contabilidad/ContabilidadNacional/Publicaciones/Documents/AAPP_A/Funcional%202020-2024.pdf" target="_blank" rel="noopener">IGAE: gasto público por funciones 2020-2024</a></li>
       <li><a href="https://www.sanidad.gob.es/estadEstudios/estadisticas/sisInfSanSNS/ofertaRecursos/hospitales/docs/CNH_2025.pdf" target="_blank" rel="noopener">Ministerio de Sanidad: Catálogo Nacional de Hospitales 2025</a></li>
       <li><a href="https://www.educacionfpydeportes.gob.es/dam/jcr:e7a0bdc6-411e-4a1d-9758-746d87ac5837/nota-avance2025-26.pdf" target="_blank" rel="noopener">Ministerio de Educación: datos avance curso 2025-2026</a></li>
+      <li><a href="https://taxfoundation.org/data/all/eu/top-personal-income-tax-rates-europe/" target="_blank" rel="noopener">Tax Foundation: tipos máximos del IRPF en Europa, 2026</a></li>
       <li><a href="https://www.sueldovox.es/" target="_blank" rel="noopener">Simulador de sueldo VOX (metodología del IRPF)</a></li>
     </ul>
   </section>
