@@ -389,13 +389,18 @@ footer .logo{height:52px}
     state[p.k]=0;
   });
   const pct=(c,g)=>(c/g*100).toLocaleString('es-ES',{maximumFractionDigits:1});
+  const TRANSF={des:1,fam:1};
+  function meses(d){const m=d/30.4;if(m<0.75){const w=Math.max(1,Math.round(d/7));return w===1?'una semana':'unas '+w+' semanas';}const h=Math.round(m*2)/2;const e=Math.floor(h);return (h>=12?'todo el año':'unos '+(e===0?'medio':e+(h%1?' meses y medio':(e===1?' mes':' meses'))));}
+  function equiv(p,c){const d=c/p.g*365;
+    if(d>=365)return 'Se recorta <b>todo</b> su presupuesto.';
+    return 'Se recorta el <b>'+pct(c,p.g)+' %</b> de su presupuesto. Es como si '+(TRANSF[p.k]?'estas ayudas dejaran de pagarse':'este servicio cerrara')+' <b>'+fmt(d)+' días al año</b>, '+meses(d).replace(/^unos medio$/,'medio mes')+'.';}
   function render(){
     let t=0;
     P.forEach(p=>{
       const c=state[p.k];t+=c;
       $('r-'+p.k).value=c;
       $('v-'+p.k).innerHTML='−'+fmt(c)+' M€ <span>('+pct(c,p.g)+' %)</span>';
-      $('e-'+p.k).innerHTML=!c?'Sin recorte.':p.eq?p.eq(c):'Recorte del <b>'+pct(c,p.g)+' %</b>: como suprimirla <b>'+fmt(c/p.g*365)+' días</b> al año.';
+      $('e-'+p.k).innerHTML=!c?'Sin recorte.':p.eq?p.eq(c):equiv(p,c);
     });
     // Impacto
     const h=Math.min(HOSP,state.san/(HOSP_GASTO/HOSP));
